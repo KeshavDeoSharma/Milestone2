@@ -6,7 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import java.util.Random;
 import com.keshav.SpringBootExample.model.Company;
 import com.keshav.SpringBootExample.service.CompanyService;
 
@@ -29,6 +29,9 @@ public class CompanyController {
 	@RequestMapping(value="/submitCompany",method=RequestMethod.POST)
 	public String addCompany(Company company)
 	{
+		Random random=new Random();
+		int i=random.nextInt(900000)+100000;
+		company.setCompanyId(i);
 				if(companyService.insertCompany(company)!=null) {
 					return "redirect:/listCompany";
 				}
